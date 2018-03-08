@@ -13,7 +13,7 @@ public class SlidePuzzle extends JFrame implements ActionListener
 	public void run()
 	{
 		this.setSize(1200,675); //16:9
-		this.setLocation(500,500);
+		this.setLocation(200,200);
 		this.setTitle("Sliding Puzzle");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -141,9 +141,9 @@ public class SlidePuzzle extends JFrame implements ActionListener
 	{
 		return JOptionPane.showConfirmDialog(this,"Show Highscores?","Puzzle Complete!",JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE);
 	}
-	public int highscores()
+	public void highscores()
 	{
-		highscores hs = new highscores()
+		highscores hs = new highscores();
 		hs.run();
 	}
 	public void actionPerformed(ActionEvent e)

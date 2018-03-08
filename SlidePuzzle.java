@@ -11,7 +11,7 @@ public class SlidePuzzle extends JFrame implements ActionListener
 	
 	public void run()
 	{
-		this.setSize(500,400);
+		this.setSize(1200,675); //16:9
 		this.setLocation(500,500);
 		this.setTitle("Sliding Puzzle");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -4,19 +4,21 @@ import java.awt.event.*;
 public class SlidePuzzle extends JFrame implements ActionListener
 {
 	JPanel pnl;
+	JTabbedPane tp = new JTabbedPane();
 	JButton buttons[] = new JButton[12];
 	JLabel emptyTile;
 	
 	public void run()
 	{
-		this.setSize(400,300);
+		this.setSize(500,400);
 		this.setLocation(500,500);
 		this.setTitle("Sliding Puzzle");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		createObjects();
 		
-		this.add(pnl);
+		tp.addTab("Sliding Puzzle",pnl);
+		this.add(tp);
 		this.setVisible(true);
 	}
 	public void createObjects()

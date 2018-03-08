@@ -46,7 +46,7 @@ public class SlidePuzzle extends JFrame implements ActionListener
 			x = 0;
 			if(count < 12)
 			{
-				y += iconArray[count].getIconHeight();
+				y += iconArray[count-1].getIconHeight();
 			}
 		}
 	}

@@ -133,9 +133,9 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		}
 		return check;
 	}
-	public void finish()
+	public int finish()
 	{
-		JOptionPane.showMessageDialog(this,"Well done!");
+		return JOptionPane.showConfirmDialog(this,"Show Highscores?","Puzzle Complete!",JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE);
 	}
 	public void actionPerformed(ActionEvent e)
 	{

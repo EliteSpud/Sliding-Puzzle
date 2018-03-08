@@ -60,11 +60,56 @@ public class SlidePuzzle extends JFrame implements ActionListener
 			iconArray[i] = new ImageIcon(currentFile);
 		}
 	}
+	public void move(int button)
+	{
+		System.out.println("move");
+		Icon temp = new ImageIcon();
+		if(buttons[button].getIcon() != iconArray[0]) //if the button clicked is NOT the blank one
+		{
+			if(button - 1 >= 0) //if button number -1 is greater than or equal to zero
+			{
+				if(buttons[button - 1].getIcon() == iconArray[0]) //if button to the left is the blank one
+				{
+					temp = buttons[button].getIcon();
+					buttons[button].setIcon(iconArray[0]);
+					buttons[button - 1].setIcon(temp);
+				}
+			}
+			if(button + 1 <= 11) //if button number +1 is less than or equal to eleven
+			{
+				if(buttons[button + 1].getIcon() == iconArray[0]) //if button to the right is the blank one
+				{
+					temp = buttons[button].getIcon();
+					buttons[button].setIcon(iconArray[0]);
+					buttons[button + 1].setIcon(temp);
+				}
+			}
+			if(button - 4 >= 0) //if button number -4 is greater than or equal to zero
+			{
+				if(buttons[button - 4].getIcon() == iconArray[0]) //if button above is the blank one
+				{
+					temp = buttons[button].getIcon();
+					buttons[button].setIcon(iconArray[0]);
+					buttons[button - 4].setIcon(temp);
+				}
+			}
+			if(button + 4 <= 11) //if button number +4 is less than or equal to eleven
+			{
+				if(buttons[button + 4].getIcon() == iconArray[0]) //if button below is the blank one
+				{
+					temp = buttons[button].getIcon();
+					buttons[button].setIcon(iconArray[0]);
+					buttons[button + 4].setIcon(temp);
+				}
+			}
+		}
+	}
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == buttons[0])
 		{
 			System.out.println("Button 0");
+			move(0);
 		}
 		if(e.getSource() == buttons[1])
 		{

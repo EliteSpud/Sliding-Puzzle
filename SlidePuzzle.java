@@ -114,46 +114,57 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		if(e.getSource() == buttons[1])
 		{
 			System.out.println("Button 1");
+			move(1);
 		}
 		if(e.getSource() == buttons[2])
 		{
 			System.out.println("Button 2");
+			move(2);
 		}
 		if(e.getSource() == buttons[3])
 		{
 			System.out.println("Button 3");
+			move(3);
 		}
 		if(e.getSource() == buttons[4])
 		{
 			System.out.println("Button 4");
+			move(4);
 		}
 		if(e.getSource() == buttons[5])
 		{
 			System.out.println("Button 5");
+			move(5);
 		}
 		if(e.getSource() == buttons[6])
 		{
 			System.out.println("Button 6");
+			move(6);
 		}
 		if(e.getSource() == buttons[7])
 		{
 			System.out.println("Button 7");
+			move(7);
 		}
 		if(e.getSource() == buttons[8])
 		{
 			System.out.println("Button 8");
+			move(8);
 		}
 		if(e.getSource() == buttons[9])
 		{
 			System.out.println("Button 9");
+			move(9);
 		}
 		if(e.getSource() == buttons[10])
 		{
 			System.out.println("Button 10");
+			move(10);
 		}
 		if(e.getSource() == buttons[11])
 		{
 			System.out.println("Button 11");
+			move(11);
 		}
 	}
 	public static void main(String[] args)

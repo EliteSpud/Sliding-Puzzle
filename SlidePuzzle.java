@@ -7,7 +7,8 @@ public class SlidePuzzle extends JFrame implements ActionListener
 	private JPanel pnl;
 	private JTabbedPane tp = new JTabbedPane();
 	private JButton buttons[] = new JButton[12];
-	private JLabel emptyTile;
+	private JLabel lblScore;
+	private int score = 0;
 	
 	public void run()
 	{
@@ -29,6 +30,10 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		int count = 0;
 		loadIcons();
 		pnl = new JPanel(null);
+		lblScore = new JLabel("Score : 0");
+		lblScore.setSize(100,30);
+		lblScore.setLocation(500,50);
+		pnl.add(lblScore);
 		for(int i = 0; i < 3; i++)
 		{
 			for(int k = 0; k < 4; k++)
@@ -62,10 +67,12 @@ public class SlidePuzzle extends JFrame implements ActionListener
 	}
 	public void move(int button)
 	{
+		
 		System.out.println("move");
 		Icon temp = new ImageIcon();
 		if(buttons[button].getIcon() != iconArray[0]) //if the button clicked is NOT the blank one
 		{
+			changeScore();
 			if(button - 1 >= 0) //if button number -1 is greater than or equal to zero
 			{
 				if(buttons[button - 1].getIcon() == iconArray[0]) //if button to the left is the blank one
@@ -103,6 +110,32 @@ public class SlidePuzzle extends JFrame implements ActionListener
 				}
 			}
 		}
+		boolean complete = checkComplete();
+		if(complete == true)
+		{
+			finish();
+		}
+	}
+	public void changeScore()
+	{
+		score++;
+		lblScore.setText("Score : "+score);
+	}
+	public boolean checkComplete()
+	{
+		boolean check = true;
+		for(int i = 0;i<iconArray.length;i++)
+		{
+			if(buttons[i].getIcon() != iconArray[i])
+			{
+				check = false;
+			}
+		}
+		return check;
+	}
+	public void finish()
+	{
+		JOptionPane.showMessageDialog(this,"Well done!");
 	}
 	public void actionPerformed(ActionEvent e)
 	{

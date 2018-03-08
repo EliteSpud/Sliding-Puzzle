@@ -113,7 +113,11 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		boolean complete = checkComplete();
 		if(complete == true)
 		{
-			finish();
+			int showHighscores = finish();
+			if(showHighscores == 0)
+			{
+				highscores();
+			}
 		}
 	}
 	public void changeScore()
@@ -136,6 +140,11 @@ public class SlidePuzzle extends JFrame implements ActionListener
 	public int finish()
 	{
 		return JOptionPane.showConfirmDialog(this,"Show Highscores?","Puzzle Complete!",JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE);
+	}
+	public int highscores()
+	{
+		highscores hs = new highscores()
+		hs.run();
 	}
 	public void actionPerformed(ActionEvent e)
 	{

@@ -20,8 +20,6 @@ public class highscores extends JFrame
 		tbl.setSize(300,450);
 		tbl.setLocation(0,0);
 		tbl.setRowHeight(20);
-		//tbl.getColumnModel().getColumn(0).setPreferredWidth(50);
-		//tbl.getColumnModel().getColumn(1).setPreferredWidth(50);
 		pnl.add(tbl);
 	}
 }

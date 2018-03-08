@@ -3,10 +3,11 @@ import java.awt.*;
 import java.awt.event.*;
 public class SlidePuzzle extends JFrame implements ActionListener
 {
-	JPanel pnl;
-	JTabbedPane tp = new JTabbedPane();
-	JButton buttons[] = new JButton[12];
-	JLabel emptyTile;
+	private ImageIcon iconArray[];
+	private JPanel pnl;
+	private JTabbedPane tp = new JTabbedPane();
+	private JButton buttons[] = new JButton[12];
+	private JLabel emptyTile;
 	
 	public void run()
 	{
@@ -26,33 +27,37 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		int x = 0;
 		int y = 0;
 		int count = 0;
+		loadIcons();
 		pnl = new JPanel(null);
 		for(int i = 0; i < 3; i++)
 		{
 			for(int k = 0; k < 4; k++)
 			{
 				buttons[count] = new JButton();
-				buttons[count].setSize(100,100);
+				buttons[count].setIcon(iconArray[count]);
+				buttons[count].setSize(iconArray[count].getIconWidth(),iconArray[count].getIconHeight());
 				buttons[count].setLocation(x,y);
+				buttons[count].setBorder(null);
 				buttons[count].addActionListener(this);
 				pnl.add(buttons[count]);
-				x += 100;
+				x += iconArray[count].getIconWidth();
 				count++;
 			}
 			x = 0;
-			y += 100;
+			if(count < 12)
+			{
+				y += iconArray[count].getIconHeight();
+			}
 		}
-		loadIcons();
 	}
 	public void loadIcons()
 	{
-		ImageIcon iconArray[] = new ImageIcon[12];
+		iconArray = new ImageIcon[12];
 		for(int i = 0;i<iconArray.length; i++)
 		{
-			String currentFile = ("bart" + String.valueOf(i));
-			System.out.println("Current file : "+currentFile);
+			String currentFile = ("bart" + String.valueOf(i) + ".jpg");
+			System.out.println("Current file : "+currentFile+".jpg");
 			iconArray[i] = new ImageIcon(currentFile);
-			buttons[i].setIcon(iconArray[i]);
 		}
 	}
 	public void actionPerformed(ActionEvent e)

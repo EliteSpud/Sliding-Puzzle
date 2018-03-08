@@ -40,7 +40,14 @@ public class SlidePuzzle extends JFrame implements ActionListener
 				buttons[count].setBorder(null);
 				buttons[count].addActionListener(this);
 				pnl.add(buttons[count]);
-				x += iconArray[count].getIconWidth();
+				if(count == 0)
+				{
+					x += iconArray[count].getIconWidth();
+				}
+				else if(count > 0)
+				{
+					x += iconArray[count-1].getIconWidth();
+				}
 				count++;
 			}
 			x = 0;

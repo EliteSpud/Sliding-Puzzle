@@ -12,7 +12,7 @@ public class highscores extends JFrame
 		this.setSize(400,500);
 		this.setLocation(600,300);
 		this.setTitle("Highscores");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		createObjects();
 		
@@ -35,14 +35,13 @@ public class highscores extends JFrame
 	{		
 		String readArray[] = new String[20];
 		int f = 1;
-		String read;
+		String read = "";
 		try
 		{
 			BufferedReader br = new BufferedReader(new FileReader("highscores.txt"));
-			while(read.equals(null)==false)
+			while((read = br.readLine()) != null)
 			{
-				
-				read = br.readLine();
+				System.out.println("read");
 				f++;
 			}
 		}

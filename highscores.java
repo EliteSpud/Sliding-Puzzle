@@ -21,7 +21,7 @@ public class highscores extends JFrame
 		
 		
 		System.out.println(highscore);
-		checkScore();
+		loadScores();
 	}
 	public void createObjects()
 	{
@@ -31,10 +31,10 @@ public class highscores extends JFrame
 		tbl.setBorder(BorderFactory.createLineBorder(Color.black));
 		pnl.add(tbl);
 	}
-	public void checkScore()
+	public void loadScores()
 	{		
 		String readArray[] = new String[20];
-		int f = 1;
+		int f = 0;
 		String read = "";
 		try
 		{
@@ -42,6 +42,7 @@ public class highscores extends JFrame
 			while((read = br.readLine()) != null)
 			{
 				System.out.println("read");
+				readArray[f] = read;
 				f++;
 			}
 		}
@@ -49,6 +50,19 @@ public class highscores extends JFrame
 		{
 			System.out.println(e);
 			JOptionPane.showMessageDialog(null,"An error occurred");
+		}
+		fillTable(readArray,f);
+	}
+	public void fillTable(String[] values,int count)
+	{
+		String[] scoresSplit;
+		int row = 0;
+		for(int p = 0;p<count;p++)
+		{
+			scoresSplit = values[p].split(":");
+			tbl.setValueAt(scoresSplit[0],row,0);
+			tbl.setValueAt(scoresSplit[1],row,1);
+			row++;
 		}
 	}
 }

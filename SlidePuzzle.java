@@ -72,7 +72,6 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		Icon temp = new ImageIcon();
 		if(buttons[button].getIcon() != iconArray[0]) //if the button clicked is NOT the blank one
 		{
-			changeScore();
 			if(button - 1 >= 0) //if button number -1 is greater than or equal to zero
 			{
 				if(buttons[button - 1].getIcon() == iconArray[0]) //if button to the left is the blank one
@@ -80,6 +79,7 @@ public class SlidePuzzle extends JFrame implements ActionListener
 					temp = buttons[button].getIcon();
 					buttons[button].setIcon(iconArray[0]);
 					buttons[button - 1].setIcon(temp);
+					changeScore();
 				}
 			}
 			if(button + 1 <= 11) //if button number +1 is less than or equal to eleven
@@ -89,6 +89,7 @@ public class SlidePuzzle extends JFrame implements ActionListener
 					temp = buttons[button].getIcon();
 					buttons[button].setIcon(iconArray[0]);
 					buttons[button + 1].setIcon(temp);
+					changeScore();
 				}
 			}
 			if(button - 4 >= 0) //if button number -4 is greater than or equal to zero
@@ -98,6 +99,7 @@ public class SlidePuzzle extends JFrame implements ActionListener
 					temp = buttons[button].getIcon();
 					buttons[button].setIcon(iconArray[0]);
 					buttons[button - 4].setIcon(temp);
+					changeScore();
 				}
 			}
 			if(button + 4 <= 11) //if button number +4 is less than or equal to eleven
@@ -107,6 +109,7 @@ public class SlidePuzzle extends JFrame implements ActionListener
 					temp = buttons[button].getIcon();
 					buttons[button].setIcon(iconArray[0]);
 					buttons[button + 4].setIcon(temp);
+					changeScore();
 				}
 			}
 		}

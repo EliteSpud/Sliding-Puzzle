@@ -21,7 +21,8 @@ public class highscores extends JFrame
 		
 		
 		System.out.println(highscore);
-		loadScores();
+		int numScores = loadScores();
+		checkScore(highscore,numScores);
 	}
 	public void createObjects()
 	{
@@ -31,7 +32,7 @@ public class highscores extends JFrame
 		tbl.setBorder(BorderFactory.createLineBorder(Color.black));
 		pnl.add(tbl);
 	}
-	public void loadScores()
+	public int loadScores()
 	{		
 		String readArray[] = new String[20];
 		int f = 0;
@@ -52,6 +53,7 @@ public class highscores extends JFrame
 			JOptionPane.showMessageDialog(null,"An error occurred");
 		}
 		fillTable(readArray,f);
+		return f;
 	}
 	public void fillTable(String[] values,int count)
 	{
@@ -65,4 +67,37 @@ public class highscores extends JFrame
 			row++;
 		}
 	}
+	public void checkScore(int score,int numScores)
+	{
+		int[] scores = new int[20];
+		boolean scoreEntered = false;
+		for(int w = 0;w < numScores; w++)
+		{
+			scores[w] = Integer.parseInt(tbl.getModel().getValueAt(w,1).toString());
+			if(score < scores[w] && scoreEntered == false)
+			{
+				addScore(scores,score,w);
+				scoreEntered = true;
+			}
+		}
+	}
+	public void addScore(int[] scoreArray,int newScore,int counter)
+	{
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

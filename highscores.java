@@ -89,11 +89,6 @@ public class highscores extends JFrame
 	}
 	public void addScore(int[] scoreArray,int newScore,int counter)
 	{
-		for(int o = 0;o<scoreArray.length;o++)
-		{
-			System.out.println(scoreArray[o]);
-		}
-		
 		System.out.println("///////////// addScore /////////////");
 		String[] nameArray = new String[20];
 		int tempScore1 = -1;
@@ -108,58 +103,28 @@ public class highscores extends JFrame
 		tbl.setValueAt(newScore,counter,1);
 		counter++;
 		
-		while(counter != scoreArray.length)
+		while(counter != scoreArray.length) //CLEAN THIS UP
 		{
 			if(counter == scoreArray.length)
 			{
 				break;
 			}
-			else
-			{
 				nameArray[counter] = (tbl.getModel().getValueAt(counter,0).toString());
 				tbl.setValueAt(nameArray[counter-1],counter,0);
 				tempScore2 = scoreArray[counter];
 				scoreArray[counter] = tempScore1;
 				tbl.setValueAt(tempScore1,counter,1);
 				counter++;
-			}
 			if(counter == scoreArray.length)
 			{
 				break;
 			}
-			else
-			{
 				nameArray[counter] = (tbl.getModel().getValueAt(counter,0).toString());
 				tbl.setValueAt(nameArray[counter-1],counter,0);
 				tempScore1 = scoreArray[counter];
 				scoreArray[counter] = tempScore2;
 				tbl.setValueAt(tempScore2,counter,1);
 				counter++;
-			}
-		}
-		
-		for(int p = 0;p<scoreArray.length;p++)
-		{
-			System.out.println(nameArray[p]+scoreArray[p]);
 		}
 	}
-	/*public void changeTable(int[] scores,int pos)
-	{
-		tbl.setValueAt("ENTER NAME",pos,0); //sets name field to "ENTER NAME"
-		
-	}*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

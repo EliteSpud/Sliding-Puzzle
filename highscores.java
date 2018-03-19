@@ -80,6 +80,11 @@ public class highscores extends JFrame
 				addPosition = w;
 				scoreEntered = true;
 			}
+			if(score == scores[w] && scoreEntered == false)
+			{
+				addPosition = w+1;
+				scoreEntered = true;
+			}
 		}
 		if(addPosition != -1)
 		{
@@ -87,10 +92,10 @@ public class highscores extends JFrame
 			//changeTable(scores,addPosition);
 		}
 	}
-	public void addScore(int[] scoreArray,int newScore,int counter)
+	public void addScore(int[] scoreArray,int newScore,int row)
 	{
 		System.out.println("///////////// addScore /////////////");
-		String[] nameArray = new String[20];
+		/*String[] nameArray = new String[20];
 		int tempScore1 = -1;
 		int tempScore2 = -1;
 		
@@ -102,29 +107,48 @@ public class highscores extends JFrame
 		scoreArray[counter] = newScore;
 		tbl.setValueAt(newScore,counter,1);
 		counter++;
-		
 		while(counter != scoreArray.length) //CLEAN THIS UP
 		{
 			if(counter == scoreArray.length)
 			{
 				break;
 			}
-				nameArray[counter] = (tbl.getModel().getValueAt(counter,0).toString());
-				tbl.setValueAt(nameArray[counter-1],counter,0);
-				tempScore2 = scoreArray[counter];
-				scoreArray[counter] = tempScore1;
-				tbl.setValueAt(tempScore1,counter,1);
-				counter++;
+			nameArray[counter] = (tbl.getModel().getValueAt(counter,0).toString());
+			tbl.setValueAt(nameArray[counter-1],counter,0);
+			tempScore2 = scoreArray[counter];
+			scoreArray[counter] = tempScore1;
+			tbl.setValueAt(tempScore1,counter,1);
+			counter++;
 			if(counter == scoreArray.length)
 			{
 				break;
 			}
-				nameArray[counter] = (tbl.getModel().getValueAt(counter,0).toString());
-				tbl.setValueAt(nameArray[counter-1],counter,0);
-				tempScore1 = scoreArray[counter];
-				scoreArray[counter] = tempScore2;
-				tbl.setValueAt(tempScore2,counter,1);
-				counter++;
+			nameArray[counter] = (tbl.getModel().getValueAt(counter,0).toString());
+			tbl.setValueAt(nameArray[counter-1],counter,0);
+			tempScore1 = scoreArray[counter];
+			scoreArray[counter] = tempScore2;
+			tbl.setValueAt(tempScore2,counter,1);
+			counter++;
+			
+		}*/
+		int x = 19;
+		System.out.println("x = "+x);
+		do
+		{
+			if(x == row)
+			{
+				tbl.setValueAt("ENTER NAME",row,0);
+				tbl.setValueAt(newScore,row,1);
+				x = -1;
+			}
+			else
+			{
+				System.out.println("x = "+x);
+				tbl.setValueAt(tbl.getModel().getValueAt(x-1,0),x,0);
+				tbl.setValueAt(tbl.getModel().getValueAt(x-1,1),x,1);
+				x--;
+			}
 		}
+		while(x != -1);
 	}
 }

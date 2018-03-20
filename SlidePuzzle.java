@@ -1,3 +1,11 @@
+/**
+ * class SlidePuzzle generates a GUI to show a sliding puzzle.
+ * It allows the user to click on JButtons with ImageIcons and move them around the puzzle to solve it.
+ */
+
+
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -12,6 +20,10 @@ public class SlidePuzzle extends JFrame implements ActionListener
 	private JLabel lblScore;
 	private int score = 0;
 	
+	/**
+	 * run() sets the size, location, title, and default close operation of the JFrame extended by the class.
+	 * @see javax.swing.JFrame
+	 */
 	public void run()
 	{
 		this.setSize(1200,675); //16:9
@@ -25,6 +37,15 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		this.add(tp); //adds tabbedpane to JFrame
 		this.setVisible(true);
 	}
+	/**
+	 * createObjects() sets the size and location of JComponents declared globally in the class
+	 * sets the JPanel's layout to null
+	 * adds an ActionListener to each button, and a random ImageIcon to each button
+	 * calls loadIcons() to load ImageIcons into arrays
+	 * calls setButtons() to set size, location, ActionListener, and border of JButtons
+	 * @see loadIcons()
+	 * @see setButtons()
+	 */
 	public void createObjects()
 	{
 		loadIcons();
@@ -43,6 +64,12 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		iconArrayRandom = rP.randomise(iconArrayRandom); //randomises image icon array
 		setButtons(iconArrayRandom); //sets button icons to the random icons
 	}
+	/**
+	 * setButtons() takes an array of ImageIcons, 12 in length
+	 * it uses int variables x and y to keep track of the location of the buttons and to set the locations correctly
+	 * a nested for loop ensures that the buttons take on a 2D alignment
+	 * @param images, the ImageIcon array to set the button icons with
+	 */
 	public void setButtons(ImageIcon[] images)
 	{
 		int x = 0;
@@ -69,6 +96,9 @@ public class SlidePuzzle extends JFrame implements ActionListener
 			}
 		}
 	}
+	/**
+	 * loadIcons() loads 12 images from file into iconArray, and copies each ImageIcon in this array to iconArrayRandom
+	 */
 	public void loadIcons() //loads image icons from files into an array, in the correct completed order
 	{
 		iconArray = new ImageIcon[12];
@@ -79,9 +109,19 @@ public class SlidePuzzle extends JFrame implements ActionListener
 			iconArrayRandom[i] = iconArray[i];
 		}
 	}
+	/**
+	 * move() checks if the button clicked is not the empty space
+	 * if this condition is met, it looks for the empty space. If the empty space is directly above, below, left of, or right of the button clicked,
+	 * then the button clicked and the empty space swap their ImageIcons.
+	 * each movement calls checkComplete. if this returns true, the user is prompted that the puzzle is complete, by calling finish().
+	 * the user can then click "yes" or "no" to open the highscores, which happens when highscores() is called.
+	 * @param button is the number of the button clicked by the user
+	 * @see checkComplete()
+	 * @see finish()
+	 * @see highscores()
+	 */
 	public void move(int button)
 	{
-		System.out.println("MOVE");
 		Icon temp = new ImageIcon();
 		if(buttons[button].getIcon() != iconArray[0]) //if the button clicked is NOT the blank one
 		{
@@ -141,6 +181,11 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		score++; //increases score by 1
 		lblScore.setText("Score : "+score); //updates score label
 	}
+	/**
+	 * checkComplete rather checks if the puzzle is incomplete
+	 * if it is not incomplete, then it is complete, and true is returned.
+	 * @return the completion state of the puzzle
+	 */
 	public boolean checkComplete()
 	{
 		boolean check = true;
@@ -153,10 +198,16 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		}
 		return check;
 	}
+	/**
+	 * opens a new window to prompt the user to tell them the puzzle is complete, and to ask if they want to open the highscores
+	 */
 	public int finish()
 	{
 		return JOptionPane.showConfirmDialog(this,"Show Highscores?","Puzzle Complete!",JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE); //pops up with an option dialog for the user, with yes or no.
 	}
+	/**
+	 * opens the highscores
+	 */
 	public void highscores(int highscore)
 	{
 		highscores hs = new highscores(); //new object of class highscores

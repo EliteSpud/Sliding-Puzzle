@@ -1,9 +1,9 @@
-Empty:9999
-Empty:9999
-Empty:9999
-Empty:9999
-Empty:9999
-Empty:9999
+Jack 1:81
+Jack 2:83
+Natalie:99
+Jack 3:105
+Jack 4:107
+Jack 5:248
 Empty:9999
 Empty:9999
 Empty:9999

@@ -16,23 +16,11 @@ public class randomPuzzle
 			possibleMovesCount = -1;
 			if(i == 0) //this makes the first move
 			{
-				/*if(r.nextInt(1) == 0) //random number 0 or 1
-				{
-					swap(greyTile,1,icons); //swaps grey tile's icon, and tile 1's icon
-					lastTile = 0;
-					greyTile = 1;
-				}
-				else
-				{
-					swap(greyTile,4,icons); //swaps grey tile's icon, and tile 4's icon
-					lastTile = 0;
-					greyTile = 4;
-				}*/
-				
 				swap(greyTile,1,icons);
 				lastTile = 0;
-				greyTile = 4;
+				greyTile = 1;
 			}
+			
 			if((greyTile - 1 >= 0) && (greyTile - 1 != lastTile)) //if grey tile has a tile left of it that hasn't just been moved then that tile is a possible move
 			{
 				if(greyTile == 4 || greyTile == 8)

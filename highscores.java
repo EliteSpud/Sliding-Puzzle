@@ -10,6 +10,8 @@ public class highscores extends JFrame implements ActionListener
 	JPanel pnl = new JPanel(null);
 	JTable tbl = new JTable(20,2);
 	JButton btnSubmit = new JButton("Submit");
+	JTextField txtName = new JTextField();
+	int addPosition = -1; //rogue value
 	public void run(int highscore)
 	{
 		this.setSize(500,600);
@@ -37,6 +39,10 @@ public class highscores extends JFrame implements ActionListener
 		btnSubmit.setLocation(375,375);
 		btnSubmit.addActionListener(this);
 		pnl.add(btnSubmit);
+		
+		txtName.setSize(100,30);
+		txtName.setLocation(375,340);
+		pnl.add(txtName);
 	}
 	public int loadScores()
 	{		
@@ -75,7 +81,6 @@ public class highscores extends JFrame implements ActionListener
 	{
 		int[] scores = new int[20];
 		boolean scoreEntered = false; //used to make sure each score is only entered once
-		int addPosition = -1; //rogue value
 		for(int w = 0;w < numScores; w++)
 		{
 			scores[w] = Integer.parseInt(tbl.getModel().getValueAt(w,1).toString()); //seemingly convoluted way of getting an int from a JTable
@@ -97,43 +102,6 @@ public class highscores extends JFrame implements ActionListener
 	}
 	public void addScore(int[] scoreArray,int newScore,int row)
 	{
-		//System.out.println("///////////// addScore /////////////");
-		/*String[] nameArray = new String[20];
-		int tempScore1 = -1;
-		int tempScore2 = -1;
-		
-		tempScore1 = scoreArray[counter];
-		nameArray[counter] = (tbl.getModel().getValueAt(counter,0).toString());
-		
-		tbl.setValueAt("ENTER NAME",counter,0); //sets name field to "ENTER NAME"
-		
-		scoreArray[counter] = newScore;
-		tbl.setValueAt(newScore,counter,1);
-		counter++;
-		while(counter != scoreArray.length) //CLEAN THIS UP
-		{
-			if(counter == scoreArray.length)
-			{
-				break;
-			}
-			nameArray[counter] = (tbl.getModel().getValueAt(counter,0).toString());
-			tbl.setValueAt(nameArray[counter-1],counter,0);
-			tempScore2 = scoreArray[counter];
-			scoreArray[counter] = tempScore1;
-			tbl.setValueAt(tempScore1,counter,1);
-			counter++;
-			if(counter == scoreArray.length)
-			{
-				break;
-			}
-			nameArray[counter] = (tbl.getModel().getValueAt(counter,0).toString());
-			tbl.setValueAt(nameArray[counter-1],counter,0);
-			tempScore1 = scoreArray[counter];
-			scoreArray[counter] = tempScore2;
-			tbl.setValueAt(tempScore2,counter,1);
-			counter++;
-			
-		}*/
 		int x = 19;
 		do
 		{
@@ -158,18 +126,30 @@ public class highscores extends JFrame implements ActionListener
 		{
 			try
 			{
-				BufferedWriter bw = new BufferedWriter(new FileWriter("highscores.txt"));
+				BufferedWriter bw = new BufferedWriter(new FileWriter("highscores.txt")); //opens a new bufferedwriter to write into highscores file
 				for(int i = 0;i<tbl.getModel().getRowCount();i++)
 				{
-					bw.write(tbl.getModel().getValueAt(i,0) + ":" + tbl.getModel().getValueAt(i,1));
-					bw.newLine();
+					if(i == addPosition) //when reached the row to enter the new score, enter the new score and name
+					{
+						bw.write(txtName.getText() + ":" + tbl.getModel().getValueAt(i,1));
+						bw.newLine();
+					}
+					else //writing the other scores
+					{
+						bw.write(tbl.getModel().getValueAt(i,0) + ":" + tbl.getModel().getValueAt(i,1));
+						bw.newLine();
+					}
 				}
+				bw.close(); //close buffer to write all text to file. not closing buffer results in a blank file.
 			}
 			catch(Exception t)
 			{
-				JOptionPane.showMessageDialog(null,"Something went wrong with writing highscores");
+				JOptionPane.showMessageDialog(null,"Something went wrong with writing highscores"); //show error message
 				System.out.println(t);
 			}
+			
+			tbl.getModel().setValueAt(txtName.getText(),addPosition,0); //sets field with "ENTER NAME" to the name given in the text box
+			repaint(); //refreshes all JComponents so the JTable will show the new name
 		}
 	}
 }

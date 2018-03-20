@@ -7,8 +7,8 @@ public class randomPuzzle
 	{
 		Random r = new Random();
 		int[] buttonNumbers = {0,1,2,3,4,5,6,7,8,9,10,11};
-		//int moves = r.nextInt(250 - 50 + 1) + 50; //generates a random number between 50 and 250 inclusive
-		int moves = 10;
+		int moves = r.nextInt(250 - 50 + 1) + 50; //generates a random number between 50 and 250 inclusive
+		//int moves = 20;
 		System.out.println("MOVES = "+moves);
 		int greyTile  = 0;
 		int lastTile = -1;
@@ -43,7 +43,7 @@ public class randomPuzzle
 					//System.out.println("Possible Moves Count = "+possibleMovesCount);
 				}
 			}
-			if((greyTile + 1 >= 0) && (greyTile + 1 != lastTile))
+			if((greyTile + 1 <= 11) && (greyTile + 1 != lastTile))
 			{
 				if(greyTile != 3 && greyTile != 7)
 				{
@@ -58,7 +58,7 @@ public class randomPuzzle
 				possibleMoves[possibleMovesCount] = greyTile - 4;
 				//System.out.println("Possible Moves Count = "+possibleMovesCount);
 			}
-			if((greyTile + 4 >= 0) && (greyTile + 4 != lastTile))
+			if((greyTile + 4 <= 11) && (greyTile + 4 != lastTile))
 			{
 				possibleMovesCount++;
 				possibleMoves[possibleMovesCount] = greyTile + 4;

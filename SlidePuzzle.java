@@ -8,6 +8,7 @@ public class SlidePuzzle extends JFrame implements ActionListener
 	private JPanel pnl;
 	private JTabbedPane tp = new JTabbedPane();
 	private JButton buttons[] = new JButton[12];
+	private JButton btnRandom = new JButton("Randomise");
 	private JLabel lblScore;
 	private int score = 0;
 	
@@ -26,35 +27,45 @@ public class SlidePuzzle extends JFrame implements ActionListener
 	}
 	public void createObjects()
 	{
-		int x = 0;
-		int y = 0;
-		int count = 0;
 		loadIcons();
-		randomPuzzle rP = new randomPuzzle();
-		iconArrayRandom = rP.randomise(iconArrayRandom);
+		
 		pnl = new JPanel(null);
 		lblScore = new JLabel("Score : 0");
 		lblScore.setSize(100,30);
 		lblScore.setLocation(500,50);
 		pnl.add(lblScore);
+		btnRandom.setSize(100,50);
+		btnRandom.setLocation(500,400);
+		btnRandom.addActionListener(this);
+		pnl.add(btnRandom);
+		
+		randomPuzzle rP = new randomPuzzle();
+		iconArrayRandom = rP.randomise(iconArrayRandom);
+		setButtons(iconArrayRandom);
+	}
+	public void setButtons(ImageIcon[] images)
+	{
+		int x = 0;
+		int y = 0;
+		int count = 0;
 		for(int i = 0; i < 3; i++)
 		{
 			for(int k = 0; k < 4; k++)
 			{
 				buttons[count] = new JButton();
-				buttons[count].setIcon(iconArrayRandom[count]);
-				buttons[count].setSize(iconArrayRandom[count].getIconWidth(),iconArrayRandom[count].getIconHeight());
+				buttons[count].setIcon(images[count]);
+				buttons[count].setSize(images[count].getIconWidth(),images[count].getIconHeight());
 				buttons[count].setLocation(x,y);
 				buttons[count].setBorder(null);
 				buttons[count].addActionListener(this);
 				pnl.add(buttons[count]);
-				x += (iconArrayRandom[count].getIconWidth());
+				x += (images[count].getIconWidth());
 				count++;
 			}
 			x = 0;
 			if(count < 12)
 			{
-				y += iconArrayRandom[count-1].getIconHeight();
+				y += images[count-1].getIconHeight();
 			}
 		}
 	}
@@ -203,6 +214,11 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		if(e.getSource() == buttons[11])
 		{
 			move(11);
+		}
+		
+		if(e.getSource() == btnRandom)
+		{
+			
 		}
 	}
 	public static void main(String[] args)

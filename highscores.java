@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 public class highscores extends JFrame
 {
 	JPanel pnl = new JPanel(null);
@@ -132,7 +133,6 @@ public class highscores extends JFrame
 			
 		}*/
 		int x = 19;
-		//System.out.println("x = "+x);
 		do
 		{
 			if(x == row)

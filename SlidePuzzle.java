@@ -165,6 +165,13 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		highscores hs = new highscores();
 		hs.run(highscore);
 	}
+	public void removeIcons()
+	{
+		for(int u = 0;u < buttons.length;u++)
+		{
+			pnl.remove(buttons[u]);
+		}
+	}
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == buttons[0])
@@ -218,7 +225,11 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		
 		if(e.getSource() == btnRandom)
 		{
-			
+			removeIcons();
+			randomPuzzle rPuzz = new randomPuzzle();
+			ImageIcon newRandomIcons[] = rPuzz.randomise(iconArray);
+			setButtons(newRandomIcons);
+			repaint();
 		}
 	}
 	public static void main(String[] args)

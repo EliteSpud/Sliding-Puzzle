@@ -4,13 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-public class highscores extends JFrame
+import java.awt.event.*;
+public class highscores extends JFrame implements ActionListener
 {
 	JPanel pnl = new JPanel(null);
 	JTable tbl = new JTable(20,2);
+	JButton btnSubmit = new JButton("Submit");
 	public void run(int highscore)
 	{
-		this.setSize(400,500);
+		this.setSize(500,600);
 		this.setLocation(600,300);
 		this.setTitle("Highscores");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //only close this window when X clicked; not entire program
@@ -30,6 +32,11 @@ public class highscores extends JFrame
 		tbl.setRowHeight(20);
 		tbl.setBorder(BorderFactory.createLineBorder(Color.black)); //gives JTable a border
 		pnl.add(tbl);
+		
+		btnSubmit.setSize(100,50);
+		btnSubmit.setLocation(375,375);
+		btnSubmit.addActionListener(this);
+		pnl.add(btnSubmit);
 	}
 	public int loadScores()
 	{		
@@ -144,5 +151,25 @@ public class highscores extends JFrame
 			}
 		}
 		while(x != -1);
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==btnSubmit)
+		{
+			try
+			{
+				BufferedWriter bw = new BufferedWriter(new FileWriter("highscores.txt"));
+				for(int i = 0;i<tbl.getModel().getRowCount();i++)
+				{
+					bw.write(tbl.getModel().getValueAt(i,0) + ":" + tbl.getModel().getValueAt(i,1));
+					bw.newLine();
+				}
+			}
+			catch(Exception t)
+			{
+				JOptionPane.showMessageDialog(null,"Something went wrong with writing highscores");
+				System.out.println(t);
+			}
+		}
 	}
 }

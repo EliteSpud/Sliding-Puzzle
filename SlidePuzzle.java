@@ -181,14 +181,14 @@ public class SlidePuzzle extends JFrame implements ActionListener
 		if(e.getSource() == btnRandom)
 		{
 			removeIcons();
-			randomPuzzle rPuzz = new randomPuzzle();
+			randomPuzzle rPuzz = new randomPuzzle(); //new object of class randomPuzzle
 			for(int b = 0;b<iconArrayRandom.length;b++)
 			{
 				iconArrayRandom[b] = iconArray[b]; //resets random icons to the correct ones ready to be randomised again
 			}
-			ImageIcon newRandomIcons[] = rPuzz.randomise(iconArrayRandom);
+			ImageIcon newRandomIcons[] = rPuzz.randomise(iconArrayRandom); 
 			setButtons(newRandomIcons);
-			repaint();
+			repaint(); //forces JComponents to be repainted. Used to make the icons on the buttons change visibly.
 		}
 	}
 	public static void main(String[] args) //where the party begins

@@ -13,48 +13,44 @@ public class highscores extends JFrame
 		this.setSize(400,500);
 		this.setLocation(600,300);
 		this.setTitle("Highscores");
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //only close this window when X clicked; not entire program
 		
 		createObjects();
 		
 		this.add(pnl);
 		this.setVisible(true);
 		
-		
-		//System.out.println(highscore);
 		int numScores = loadScores();
-		checkScore(highscore,numScores);
+		checkScore(highscore,numScores); 
 	}
 	public void createObjects()
 	{
 		tbl.setSize(325,400);
 		tbl.setLocation(25,25);
 		tbl.setRowHeight(20);
-		tbl.setBorder(BorderFactory.createLineBorder(Color.black));
+		tbl.setBorder(BorderFactory.createLineBorder(Color.black)); //gives JTable a border
 		pnl.add(tbl);
 	}
 	public int loadScores()
 	{		
 		String readArray[] = new String[20];
-		int f = 0;
+		int f = 0; //used as count
 		String read = "";
 		try
 		{
-			BufferedReader br = new BufferedReader(new FileReader("highscores.txt"));
-			while((read = br.readLine()) != null)
+			BufferedReader br = new BufferedReader(new FileReader("highscores.txt")); //allows lines of text to be read from file line by line
+			while((read = br.readLine()) != null) //while line read contains text
 			{
-				//System.out.println("read");
-				readArray[f] = read;
+				readArray[f] = read; //set array at f to value that is read
 				f++;
 			}
 		}
 		catch(Exception e)
 		{
-			//System.out.println(e);
-			JOptionPane.showMessageDialog(null,"An error occurred");
+			JOptionPane.showMessageDialog(null,"An error occurred"); //display error message
 		}
 		fillTable(readArray,f);
-		return f;
+		return f; //returns number of scores
 	}
 	public void fillTable(String[] values,int count)
 	{
@@ -71,26 +67,25 @@ public class highscores extends JFrame
 	public void checkScore(int score,int numScores)
 	{
 		int[] scores = new int[20];
-		boolean scoreEntered = false;
-		int addPosition = -1;
+		boolean scoreEntered = false; //used to make sure each score is only entered once
+		int addPosition = -1; //rogue value
 		for(int w = 0;w < numScores; w++)
 		{
-			scores[w] = Integer.parseInt(tbl.getModel().getValueAt(w,1).toString());
-			if(score < scores[w] && scoreEntered == false)
+			scores[w] = Integer.parseInt(tbl.getModel().getValueAt(w,1).toString()); //seemingly convoluted way of getting an int from a JTable
+			if(score < scores[w] && scoreEntered == false) //if score is less than the score read...
 			{
-				addPosition = w;
+				addPosition = w; //...set position to add new score into table as w (current row)
 				scoreEntered = true;
 			}
-			if(score == scores[w] && scoreEntered == false)
+			if(score == scores[w] && scoreEntered == false) //if score is equal, put new score below it
 			{
 				addPosition = w+1;
 				scoreEntered = true;
 			}
 		}
-		if(addPosition != -1)
+		if(addPosition != -1) //if addPosition has been set, i.e. if the score is good enough to go into the table.
 		{
 			addScore(scores,score,addPosition); //addPosition = position in the highscores where new score should be added
-			//changeTable(scores,addPosition);
 		}
 	}
 	public void addScore(int[] scoreArray,int newScore,int row)
@@ -137,14 +132,13 @@ public class highscores extends JFrame
 		{
 			if(x == row)
 			{
-				tbl.setValueAt("ENTER NAME",row,0);
-				tbl.setValueAt(newScore,row,1);
+				tbl.setValueAt("ENTER NAME",row,0);  //if current row is where the new score should be added, add the new score and prompt user to enter name
+				tbl.setValueAt(newScore,row,1); 
 				x = -1;
 			}
 			else
 			{
-				//System.out.println("x = "+x);
-				tbl.setValueAt(tbl.getModel().getValueAt(x-1,0),x,0);
+				tbl.setValueAt(tbl.getModel().getValueAt(x-1,0),x,0); //go upwards through table, shuffling scores down
 				tbl.setValueAt(tbl.getModel().getValueAt(x-1,1),x,1);
 				x--;
 			}

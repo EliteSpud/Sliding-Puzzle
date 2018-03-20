@@ -20,7 +20,7 @@ public class highscores extends JFrame
 		this.setVisible(true);
 		
 		
-		System.out.println(highscore);
+		//System.out.println(highscore);
 		int numScores = loadScores();
 		checkScore(highscore,numScores);
 	}
@@ -42,14 +42,14 @@ public class highscores extends JFrame
 			BufferedReader br = new BufferedReader(new FileReader("highscores.txt"));
 			while((read = br.readLine()) != null)
 			{
-				System.out.println("read");
+				//System.out.println("read");
 				readArray[f] = read;
 				f++;
 			}
 		}
 		catch(Exception e)
 		{
-			System.out.println(e);
+			//System.out.println(e);
 			JOptionPane.showMessageDialog(null,"An error occurred");
 		}
 		fillTable(readArray,f);
@@ -94,7 +94,7 @@ public class highscores extends JFrame
 	}
 	public void addScore(int[] scoreArray,int newScore,int row)
 	{
-		System.out.println("///////////// addScore /////////////");
+		//System.out.println("///////////// addScore /////////////");
 		/*String[] nameArray = new String[20];
 		int tempScore1 = -1;
 		int tempScore2 = -1;
@@ -132,7 +132,7 @@ public class highscores extends JFrame
 			
 		}*/
 		int x = 19;
-		System.out.println("x = "+x);
+		//System.out.println("x = "+x);
 		do
 		{
 			if(x == row)
@@ -143,7 +143,7 @@ public class highscores extends JFrame
 			}
 			else
 			{
-				System.out.println("x = "+x);
+				//System.out.println("x = "+x);
 				tbl.setValueAt(tbl.getModel().getValueAt(x-1,0),x,0);
 				tbl.setValueAt(tbl.getModel().getValueAt(x-1,1),x,1);
 				x--;
